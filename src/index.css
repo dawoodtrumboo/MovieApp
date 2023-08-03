@@ -109,12 +109,16 @@ footer.starCount {
   color: #fff;
   margin: 5px;
 }
-.cart-btn{
+.cart-btn,.removeCart-btn{
   
       background-color: #251bb1;
       color: #fff;
       margin: 5px;
     
+}
+.removeCart-btn{
+  background-color: #db2828;
+  
 }
 .unfavourite-btn {
   background-color: #db2828;
