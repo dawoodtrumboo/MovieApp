@@ -9,57 +9,20 @@ let starCount = 0;
 
 class MovieCard extends React.Component{
 
-    constructor(){
-        super();
-        this.state = {
-            title:"The Avengers",
-            plot:"Supernatural Powers shown in the movie. ",
-            price:199,
-            rating:8.9,
-            stars:0,
-            fav:false,
-            cart:false,
-        }
-    }
-
-    increaseStar =()=>{
-
-        this.setState({
-            stars: this.state.stars + 0.5
-        });
-
-       
-    }
     
 
-    decreaseStar = ()=>{
-        if(this.state.stars!=0){
-        this.setState({
-            stars:this.state.stars - 0.5
-        });
-    }
-    }
+   
+    
 
-    handleFav =() =>{
-       this.setState({
-        fav:!this.state.fav
-       })
-       
-    }
-
-    handleCart = ()=>{
-        this.setState({
-            cart:!this.state.cart
-        })
-    }
+   
 
     render(){
-         const {title,plot,price,rating,stars,fav,cart} = this.state;
+         const {title,plot,price,rating,stars,fav,cart,poster} = this.props.movies;
         return (
             <div className='main'>
                 <div className='movie-card'>
                     <div className='left'>
-                        <img alt='Poster' src='https://hips.hearstapps.com/hmg-prod/images/d1pklzbuyaab0la-1552597012.jpg'/>
+                        <img alt='Poster' src={poster}/>
                     </div>
                     <div className='right'>
                         <div className='title'>{title}</div>
