@@ -17,35 +17,74 @@ class MovieCard extends React.Component{
    
 
     render(){
-         const {title,plot,price,rating,stars,fav,cart,poster} = this.props.movies;
-        return (
-            <div className='main'>
-                <div className='movie-card'>
-                    <div className='left'>
-                        <img alt='Poster' src={poster}/>
-                    </div>
-                    <div className='right'>
-                        <div className='title'>{title}</div>
-                        <div className='plot'>{plot}</div>
-                        <div className='price'>Rs {price}</div>
+       
+        
+        const {movies, onIncStars, onClickFav, onClickAddtocart, onDecStars} =  this.props
+        const {title, plot, poster, price, rating,stars,fav,isInCart} =  this.props.movies;
+        
+          
+        return(
+            //Movie Card
+            <div className="movie-card">
 
-                        <div className='footer'>
-                            <div className='rating'>{rating}</div>
-                            <div className='star-dis'>
-                                <img src='https://cdn-icons-png.flaticon.com/128/8690/8690041.png' className='str-btn' onClick={this.decreaseStar} />
-                                <img className='stars' src='https://cdn-icons-png.flaticon.com/128/956/956100.png'/>
-                                <img src='https://cdn-icons-png.flaticon.com/128/748/748113.png' className='str-btn' onClick={this.increaseStar}/>
-                                <span className='starCount'>{stars}</span>
-                                </div>
-                            {/* {fav?<button  className='unfavourite-btn'  onClick={this.favourite}>Un-favourite</button>:<button className='favourite-btn' onClick={this.favourite}>Favourite</button>} */}
-                            <button  className={fav?"unfavourite-btn":"favourite-btn"}  onClick={this.handleFav}>{fav?"Un-favourite":"Favourite"}</button>
-                            <button className={cart?"removeCart-btn":"cart-btn"} onClick={this.handleCart}>{cart?"Remove from Cart":"Add to Cart"}</button>
+                {/**Left section of Movie Card */}
+                <div className="left">
+                    <img alt="poster" src={poster} />
+                </div>
+                
+                {/**Right section Movie Card */}
+                <div className="right">
 
+                    {/**Title, plot, price of the movie */}
+                    <div className="title">{title}</div>
+                    <div className="plot">{plot}</div>
+                    <div className="price">Rs. {price}</div>
+
+                    {/**Footer starts here with ratings, stars and buttons */}
+                    <div className="footer">
+                        <div className="rating">{rating}</div>
+
+                        {/**Star image with increase and decrease buttons and star count */}
+                        <div className="star-dis">
+                            <img className="str-btn" 
+                                alt="Decrease" 
+                                src="https://cdn-icons-png.flaticon.com/128/2801/2801932.png" 
+                                onClick={() => onDecStars(movies)}
+                            />
+                            <img className="stars" 
+                                    alt="stars" 
+                                    src="https://cdn-icons-png.flaticon.com/128/2107/2107957.png"    
+                            />
+                            <img className="str-btn" 
+                                alt="increase" 
+                                src="https://cdn-icons-png.flaticon.com/128/2997/2997933.png" 
+                                // No binding required as addStars() is an arrow function
+                                onClick={() => onIncStars(movies)}
+                            />
+                            <span className="starCount">{stars}</span>
                         </div>
 
+                        {/**conditional rendering on Favourite button */}
+                        <button className={fav?"unfavourite-btn":"favourite-btn"}  
+                                onClick={() => onClickFav(movies)}> 
+                                    
+                                    {fav ? "Un-favourite":"Favourite"}
+
+                        </button>
+                            
+                        {/**Conditional Rendering on Add to Cart Button */}
+                        <button className={isInCart?"unfavourite-btn":"cart-btn"}  
+                                onClick={() => onClickAddtocart(movies)}>
+                                    
+                                        {isInCart ? "Remove from Cart":"Add to Cart"}
+
+                        </button>
+                        
                     </div>
                 </div>
+
             </div>
+          
         )
     }
 }
